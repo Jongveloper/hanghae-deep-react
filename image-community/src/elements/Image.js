@@ -52,7 +52,9 @@ const AspectInner = styled.div`
 const ImageCircle = styled.div`
     --size: ${(props) => props.size}px;
     width: var(--size);
+    min-width: var(--size);
     height: var(--size);
+    min-height: var(--size);
     border-radius: var(--size);
 
     background-image: url("${(props) => props.src}");

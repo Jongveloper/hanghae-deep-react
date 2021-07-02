@@ -4,6 +4,9 @@ import React from "react";
 // import Text from "../elements/Text";
 
 import {Grid, Image, Text} from "../elements"
+
+
+
 const Post = (props) => {
     return (
         <React.Fragment>
