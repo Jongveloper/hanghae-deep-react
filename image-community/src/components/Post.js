@@ -1,44 +1,49 @@
 import React from "react";
-// import Grid from "../elements/Grid";
-// import Image from "../elements/Image";
-// import Text from "../elements/Text";
-
-import {Grid, Image, Text} from "../elements"
-
+import {Grid, Image, Text, Button} from "../elements";
+import { history } from "../redux/configureStore";
 
 
 const Post = (props) => {
+
     return (
-        <React.Fragment>
-            <Grid>
-                <Grid is_flex>
-                    <Image shape="circle" src={props.src}/>
-                    <Text bold>{props.user_info.user_name}</Text>
-                    <Text>{props.insert_dt}</Text>
-                </Grid>
-                <Grid padding = "16px">
-                    <Text>{props.contents}</Text>
-                </Grid>
-                <Grid>
-                    <Image shape="rectangle" src={props.src}/>
-                </Grid>
-                <Grid padding= "16px">
-                    <Text bold>댓글 {props.comment_cnt}개</Text>
-                </Grid>
+      <React.Fragment>
+        <Grid>
+          <Grid is_flex padding="16px">
+            <Grid is_flex width="auto">
+              <Image shape="circle" src={props.src} />
+              <Text bold>{props.user_info.user_name}</Text>
             </Grid>
-        </React.Fragment>
-    )
+            <Grid is_flex width="auto">
+              <Text>{props.insert_dt}</Text>
+              {props.is_me && (
+              <Button width="auto" padding="4px" margin="4px" _onClick={() => {history.push(`/write/${props.id}`)}}>
+                수정</Button>)}
+            </Grid>
+          </Grid>
+          <Grid padding="16px">
+            <Text>{props.contents}</Text>
+          </Grid>
+          <Grid>
+            <Image shape="rectangle" src={props.image_url} />
+          </Grid>
+          <Grid padding="16px">
+            <Text margin="0px" bold>댓글 {props.comment_cnt}개</Text>
+          </Grid>
+        </Grid>
+      </React.Fragment>
+    );
 }
 
-
 Post.defaultProps = {
-  user_info : {
-      user_name : "jong",
-      user_profile : "https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg",
+  user_info: {
+    user_name: "mean0",
+    user_profile: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
   },
-  image_url: "https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_1280.jpg",
+  image_url: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
   contents: "고양이네요!",
-  comment_cnt : 10,
-  insert_dt: "2021-07-02 14:53:00",
+  comment_cnt: 10,
+  insert_dt: "2021-02-27 10:00:00",
+  is_me: false,
 };
+
 export default Post;
